@@ -1,0 +1,1 @@
+# esphome-WD-01ADE-beken
