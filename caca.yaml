@@ -124,15 +124,15 @@ interval:
 
               - lambda: 'return id(soil_moisture).state < 20;'
 
-              - time:
+              - lambda: |-
 
-                  start_time: "09:00:00"
+                  auto time_now = id(sntp_time).now();
 
-                  end_time: "17:00:00"
+                  return time_now.hour >= 9 && time_now.hour < 17;
 
           then:
-
-            - logger.log: "Moisture below 20% and within time range, activating Pump A"
+          
+            - logger.log: "Moisture below 20%, activating Pump A."
 
             - switch.turn_on: pump_a
 
