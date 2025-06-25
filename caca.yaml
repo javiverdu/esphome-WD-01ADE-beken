@@ -22,6 +22,8 @@ wifi:
   ap:
     ssid: "Tuyamierda Fallback Hotspot"
     password: "xoriso1234"
+    ap_timeout: 0s
+
 
 captive_portal:
 
@@ -37,9 +39,9 @@ time:
         minutes: 0
         hours: 13
         then:
-          - logger.log: "Running Pump A for 20 seconds"
+          - logger.log: "PUMP CHECK! 5 seconds pumping"
           - switch.turn_on: pump_a
-          - delay: 20s
+          - delay: 5s
           - switch.turn_off: pump_a
 
 status_led:
@@ -122,7 +124,7 @@ interval:
 
             and:
 
-              - lambda: 'return id(soil_moisture).state < 20;'
+              - lambda: 'return id(soil_moisture).state < 35;'
 
               - lambda: |-
 
@@ -136,6 +138,6 @@ interval:
 
             - switch.turn_on: pump_a
 
-            - delay: 2s
+            - delay: 10s
 
             - switch.turn_off: pump_a
